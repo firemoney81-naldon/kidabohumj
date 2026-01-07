@@ -1,23 +1,606 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- Schema.org Markup for Insurance Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "태아보험 유산 보장 분석 및 추천",
+      "provider": {
+        "@type": "Organization",
+        "name": "태아보험 비교분석 전문센터",
+        "url": "https://yourdomain.com",
+        "logo": "https://yourdomain.com/logo.png"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "대한민국"
+      },
+      "description": "2026년 최신 태아보험 유산 보장 정보를 제공합니다. 임신 초기 유산 관련 진단금 및 수술비 특약 상세 안내, 주요 보험사별 상품 비교, 합리적인 가입을 위한 전문가 상담 서비스를 제공합니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "태아보험 주요 보장 비교",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "유산 진단비 특약"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "0",
+              "priceCurrency": "KRW",
+              "description": "유산 진단 시 지급되는 보험금. 보험사별 보장금액 및 지급 조건 상이."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "유산 방지 치료비 특약"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "0",
+              "priceCurrency": "KRW",
+              "description": "유산 방지 주사, 입원 등 치료 시 발생하는 비용 보장."
+            }
+          }
+        ]
+      },
+      "url": "https://yourdomain.com"
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+        /* Reset and Base Styles */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-color: #f8fbfd; /* Very light background color */
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #007bff; /* Main brand color - blue */
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -1.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.8rem;
+            font-weight: 300;
+        }
+
+        /* Navigation Styling */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            font-size: 1.05rem;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content Styling */
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            color: #0056b3; /* Darker blue for headings */
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 4px solid #007bff;
+            display: inline-block;
+            line-height: 1.3;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        h4 {
+            color: #444;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        section p, section ul, section dl {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        /* Interactive Elements: Accordion (FAQ) */
+        dl {
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        dt {
+            background-color: #f9f9f9;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 700;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        dt::after {
+            content: '+';
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+        dt.active::after {
+            content: '-';
+            transform: translateY(-50%) rotate(0deg);
+        }
+        dt.active {
+            background-color: #e0f0ff;
+            color: #0056b3;
+        }
+        dd {
+            padding: 1.5rem;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.7;
+            background-color: #ffffff;
+            border-left: 2px solid #007bff;
+            margin-top: -8px; /* overlap with dt border-radius */
+            display: none;
+            overflow: hidden;
+        }
+        dt.active + dd {
+            display: block;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            font-size: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .highlight-text {
+            color: #dc3545; /* Red accent color */
+            font-weight: 700;
+        }
+        
+        /* CTA Button Styling */
+        .cta-button {
+            display: block;
+            background-color: #dc3545; /* Strong call-to-action color */
+            color: white;
+            font-weight: 700;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 2.5rem auto;
+            max-width: 300px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+        }
+        .cta-button:hover {
+            background-color: #c82333;
+            transform: translateY(-3px);
+        }
+
+        /* Form Styling */
+        form {
+            background-color: #fefefe;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-button {
+            background-color: #28a745; /* Green color for submission */
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #218838;
+        }
+
+        /* Keyword Tags Styling */
+        .keyword-tags {
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .keyword-tags a {
+            background-color: #e3f2fd; /* Light blue background */
+            color: #007bff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: 1px solid #c8e6f0;
+        }
+        .keyword-tags a:hover {
+            background-color: #bbdefb;
+        }
+
+        /* Check List Styling */
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        .check-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #28a745; /* Green checkmark */
+            font-weight: 700;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.9rem;
+            color: #888;
+            background-color: #e9ecef;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.4rem; }
+            main { padding: 0 1rem; }
+            section { padding: 1.5rem; }
+            nav ul { flex-direction: column; align-items: center; gap: 0.8rem; }
+            nav a { padding: 0.4rem 1rem; }
+            table, th, td { font-size: 0.9rem; padding: 0.8rem; }
+            .keyword-tags a { font-size: 0.85rem; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>태아보험 유산 보장, 2026년 최신 가이드라인</h1>
+        <p>엄마와 아기의 건강을 위한 태아보험, 유산 보장 범위와 가입 시기를 정확히 확인하세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#coverage">보장 내용 상세</a></li>
+                <li><a href="#period">가입 시기 중요성</a></li>
+                <li><a href="#compare">보험사별 비교</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#inquiry">전문가 상담</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="coverage">
+            <h2>태아보험 유산 보장, 왜 중요할까요?</h2>
+            <p><strong>태아보험 유산 보장</strong>은 임신을 준비하거나 임신 초기에 있는 예비 엄마들에게 가장 중요한 고려사항 중 하나입니다. 태아보험은 출생 직후 발생할 수 있는 선천성 질환이나 저체중아 출산 등에 대비하는 보험이지만, 임신 기간 중 발생 가능한 <span class="highlight-text">유산 관련 위험</span>에 대한 보장도 포함하고 있습니다. 특히 <strong>임신 초기에 유산 위험이 높아</strong> 태아보험 가입이 가능한 시기에 이 보장을 미리 준비해두는 것이 중요합니다.</p>
+            
+            <div class="keyword-tags" aria-label="태아보험 유산 관련 주요 키워드">
+                <a href="#price">태아보험유산비용</a>
+                <a href="#compare">태아보험유산특약</a>
+                <a href="#period">태아보험가입시기</a>
+                <a href="#coverage">유산진단비보장</a>
+                <a href="#faq">계류유산보험금</a>
+                <a href="#faq">자연유산보험금청구</a>
+            </div>
+
+            <h3>유산의 종류와 태아보험 보장 범위 분석</h3>
+            <p>유산은 임신 20주 이전에 태아가 사망하는 경우를 말하며, 그 종류에 따라 태아보험 보장의 유무가 달라집니다. 태아보험에서는 주로 <span class="highlight-text">자연유산</span>이나 <span class="highlight-text">계류유산</span>과 같이 불가피하게 발생하는 경우에 대해 보장합니다. 일반적인 태아보험 상품은 100% 모든 유산에 대해 보장하지 않으며, 특정 상황에 한해 보장되는 특약 형태로 운영됩니다.</p>
+            <p>2026년 최신 태아보험 트렌드를 보면, <strong>유산 방지 치료</strong>에 대한 보장도 점차 확대되고 있습니다. 습관성유산이나 조산 위험이 있는 경우 의사의 권유에 따라 입원 및 유산 방지 주사 치료를 받게 되는데, 이러한 고가의 치료 비용을 지원하는 특약의 필요성이 강조되고 있습니다.</p>
+            
+            <h3>유산 관련 핵심 보장 특약 (2026년 기준)</h3>
+            <p>태아보험 가입 시 유산 보장을 위해 반드시 확인해야 할 특약은 다음과 같습니다:</p>
+            <ul class="check-list">
+                <li><strong>유산 진단비 특약:</strong> 유산 진단 시 일정 금액을 지급합니다. <strong>계류유산</strong> 진단 시에도 보장이 가능한지 약관을 확인해야 합니다.</li>
+                <li><strong>유산 수술비 특약:</strong> 유산으로 인해 소파수술 등 수술을 받는 경우 수술비를 지급합니다.</li>
+                <li><strong>유산 방지 치료비 특약:</strong> 유산 위험으로 인한 입원 및 유산 방지 주사 등 치료비를 실비 형태로 보장합니다. (단, 보험사별로 보장 범위와 한도가 상이하며, 특히 <strong>유산 방지 주사</strong> 비용 보장은 실비보험과는 별개로 태아보험 특약으로만 가능할 수 있습니다.)</li>
+                <li><strong>습관성유산 진단비 특약:</strong> 2회 이상의 유산을 경험한 경우 재발을 대비하여 가입하는 특약입니다.</li>
+            </ul>
+            <p>이러한 특약들은 보통 <strong>임신 초기에 가입</strong>해야 효력이 발생하므로, 가입 시기를 놓치지 않는 것이 중요합니다. 특히 <strong>태아보험 유산 보장 범위</strong>는 보험사마다 천차만별이므로 꼼꼼한 비교가 필요합니다.</p>
+        </section>
+
+        <section id="period">
+            <h2>태아보험 유산 보장 가입 시기의 중요성</h2>
+            <p>태아보험 가입은 임신 사실을 확인한 순간부터 가능하지만, <strong>유산 보장</strong>과 관련해서는 특히 가입 시기가 매우 중요합니다. 보험사들은 임신 초기의 유산 위험을 고려하여 특정 시점 이후에는 유산 관련 특약 가입을 제한하거나 보장 금액을 줄이는 경우가 많습니다.</p>
+
+            <h3>임신 주차별 태아보험 가입 쟁점</h3>
+            <ul>
+                <li><strong>임신 초기 (임신 22주 이전):</strong> 이 시기가 태아보험 가입의 <span class="highlight-text">가장 적기</span>입니다. 특히 임신 22주가 지나면 태아 특약(선천성 질환, 저체중아 보장 등) 가입이 불가능해집니다. 유산 관련 특약 또한 이 시기에 함께 가입해야 보장을 받을 수 있습니다.</li>
+                <li><strong>임신 12주차 전후:</strong> 임신 초기에 유산 위험이 가장 높기 때문에, 많은 예비 부모들이 임신 12주차 이전에 태아보험 가입을 서두릅니다. <strong>유산 진단비 특약</strong>이나 <strong>유산 방지 치료비</strong> 등은 이 시기에 가입하지 않으면 나중에 추가 가입이 불가능할 수 있습니다.</li>
+                <li><strong>임신 중기 이후:</strong> 임신 22주 이후에는 일반 어린이보험으로만 가입이 가능하며, 유산 관련 보장이나 태아 특약은 가입이 불가능합니다.</li>
+            </ul>
+            <p>따라서 <strong>태아보험 가입 시기</strong>를 놓치지 않는 것이 중요합니다. 만약 가입이 늦어져 유산 관련 특약 가입을 놓치게 되면, 임신 기간 중 발생 가능한 위험에 대해 충분히 대비할 수 없습니다. <strong>태아보험 유산 저렴한곳</strong>을 찾기 위해 가격만 비교하다가 가입 시기를 놓치지 않도록 주의해야 합니다.</p>
+
+            <h3>유산 후 재가입은 가능한가요?</h3>
+            <p>만약 첫 임신에서 유산이 발생한 경우, 다음 임신 시 태아보험 가입에 제약이 생길 수 있습니다. 특히 <strong>습관성유산</strong>으로 진단받은 경우, 다음 임신 시 태아보험 가입이 거절되거나 보장 내용이 제한될 수 있습니다. <strong>습관성유산 특약</strong>은 이러한 경우를 대비하기 위해 중요하며, 이전에 유산 경험이 있는 경우 보험사에 사실대로 고지하고 가입 여부를 확인해야 합니다. <strong>태아보험 유산 후 재가입</strong> 관련해서는 반드시 전문가의 상담을 통해 꼼꼼하게 진행하는 것이 좋습니다.</p>
+        </section>
+
+        <section id="compare">
+            <h2>태아보험 유산 보장 금액 및 주요 보험사 비교 (2026년)</h2>
+            <p>태아보험의 <strong>유산 보장 금액</strong>과 <strong>태아보험 가격</strong>은 보험사별로 차이가 있습니다. <strong>태아보험 유산 비용</strong>은 주로 특약 형태로 운영되며, 보험사의 손해율에 따라 보장 범위가 변경될 수 있습니다. 아래 표는 2026년 기준으로 주요 태아보험 상품의 유산 관련 특약 보장 내용을 비교한 예시입니다. (실제 가입 시점의 상품 약관을 기준으로 최종 확인이 필요합니다.)</p>
+
+            <h3>주요 보험사별 유산 관련 보장 비교</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>A사 (Best Seller)</th>
+                        <th>B사 (가성비 추천)</th>
+                        <th>C사 (보장 범위 넓음)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>유산 진단비</strong> (1회 한도)</td>
+                        <td>50만원</td>
+                        <td>30만원</td>
+                        <td>100만원</td>
+                    </tr>
+                    <tr>
+                        <td><strong>유산 수술비</strong> (1회 한도)</td>
+                        <td>100만원</td>
+                        <td>70만원</td>
+                        <td>150만원</td>
+                    </tr>
+                    <tr>
+                        <td><strong>유산 방지 치료비</strong> (실비 형태)</td>
+                        <td>O (입원/주사 포함)</td>
+                        <td>O (입원비만 보장)</td>
+                        <td>O (입원/주사 포함, 한도 높음)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>가입 가능 시기</strong></td>
+                        <td>임신 22주 이전</td>
+                        <td>임신 16주 이전</td>
+                        <td>임신 22주 이전</td>
+                    </tr>
+                    <tr>
+                        <td><strong>보험료 예상 금액</strong> (월)</td>
+                        <td>5만원대</td>
+                        <td>4만원대</td>
+                        <td>6만원대</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>위 표를 통해 알 수 있듯이, 각 보험사마다 <strong>태아보험 유산 보장 범위</strong>와 <strong>태아보험 유산 금액</strong>에 차이가 있습니다. <strong>태아보험 순위</strong>나 <strong>태아보험 추천</strong> 글만 보고 덜컥 가입하기보다는, 자신의 건강 상태나 임신 위험도에 맞춰 보장 내용을 설계해야 합니다. 특히 유산 관련 특약의 경우 보험료가 상대적으로 저렴한 편이지만, 보장 금액이 크지 않으므로 실질적인 보장을 위해 <strong>유산 방지 치료비</strong> 등 실비 보장 특약을 함께 고려해야 합니다.</p>
+
+            <h3>유산 보장 특약의 장단점 분석</h3>
+            <h4>장점:</h4>
+            <ul class="check-list">
+                <li><strong>경제적 부담 완화:</strong> 유산 방지 주사나 입원 치료 시 발생하는 고가의 비용을 보장받을 수 있습니다.</li>
+                <li><strong>정서적 안정감:</strong> 만약의 상황에 대비하여 심리적인 안정감을 얻을 수 있습니다.</li>
+                <li><strong>임신 초기 집중 보장:</strong> 임신 초기 위험도가 높은 시기에 집중적인 보장을 받을 수 있습니다.</li>
+            </ul>
+            <h4>단점:</h4>
+            <ul class="check-list">
+                <li><strong>보장 금액 한도:</strong> 유산 진단비 특약의 보장 금액이 크지 않아 기대보다 적을 수 있습니다.</li>
+                <li><strong>가입 시기 제한:</strong> 가입 시기를 놓치면 보장을 받을 수 없습니다.</li>
+                <li><strong>특정 유산 제외:</strong> 인공유산 등 약관에서 정한 특정 유산은 보장에서 제외됩니다.</li>
+            </ul>
+            <p><strong>태아보험 유산 장단점</strong>을 고려할 때, 예비 부모님의 건강 상태와 위험도를 종합적으로 판단하여 가입 여부를 결정하는 것이 합리적입니다.</p>
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ) - 태아보험 유산편</h2>
+            <p>예비 부모님들이 <strong>태아보험 유산 보장</strong>에 대해 가장 많이 궁금해하는 질문들을 모아봤습니다.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">유산 진단비와 수술비 특약은 반드시 가입해야 하나요?</dt>
+                <dd>유산 진단비와 수술비 특약은 태아보험의 필수 특약은 아니지만, 임신 초기에 유산 위험이 높은 만큼 예비 부모님의 판단에 따라 선택적으로 가입할 수 있습니다. 특히 <strong>습관성유산</strong> 이력이 있거나 유산 위험이 높다고 판단되는 경우, 비용 대비 효율성이 높다고 평가됩니다. <strong>태아보험 유산 장단점</strong>을 고려하여 신중하게 선택하세요.</dd>
+                <dt tabindex="0" aria-expanded="false">유산 방지 주사 비용도 보험금 청구가 가능한가요?</dt>
+                <dd>유산 방지 주사(일명 프로게스테론 주사)는 비급여 항목인 경우가 많아 실비 보험에서는 보장받기 어렵습니다. 그러나 태아보험의 <strong>유산 방지 치료비 특약</strong>을 가입한 경우, 해당 특약의 약관에 따라 보장이 가능할 수 있습니다. 다만, 보장 범위가 보험사마다 다르므로 반드시 사전에 확인해야 합니다. <strong>태아보험 유산 예상 금액</strong>을 산정할 때 이 부분을 고려해야 합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">계류유산도 보장 대상에 포함되나요?</dt>
+                <dd>네, <strong>계류유산</strong>은 자연유산의 한 형태입니다. 태아보험의 유산 관련 특약은 보통 자연유산을 보장하며, 계류유산 진단 시에도 보장이 가능한 경우가 많습니다. 다만, 보험사별 약관에 따라 구체적인 지급 조건이 다를 수 있으므로 <strong>계류유산 보험금 청구</strong> 전에 약관을 확인하거나 전문가에게 문의하는 것이 좋습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">태아보험 가입 후 유산이 발생하면 보험료는 어떻게 되나요?</dt>
+                <dd>유산이 발생하여 태아가 사라지면, 태아를 보장하는 태아 특약(선천성 질환, 저체중아 보장 등)은 소멸됩니다. 하지만 보험 자체가 해지되는 것은 아닙니다. 태아보험은 출생 후 어린이보험으로 전환되는 구조이므로, 유산 발생 시 보험료가 일부 조정되거나 다음 임신 시 재가입에 대한 고려가 필요합니다. <strong>태아보험 유산 보장</strong>을 받았다고 해서 보험이 완전히 종료되는 것은 아니며, 보험사에 따라 보험료 환급 규정이 다를 수 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">태아보험 가입 시 고지해야 할 내용은 무엇인가요?</dt>
+                <dd>태아보험 가입 시 예비 엄마의 건강 상태, 특히 임신 전후의 질병 이력이나 유산 이력을 고지해야 합니다. 만약 <strong>습관성유산</strong> 이력이 있다면 보험사에 반드시 알리고 가입 가능 여부를 확인해야 합니다. 고지 의무 위반 시 추후 보험금 지급에 문제가 발생할 수 있습니다.</dd>
+            </dl>
+        </section>
+
+        <section class="external-links">
+            <h2>신뢰할 수 있는 외부 정보: 이사 관련 유용한 정보</h2>
+            <p><strong>태아보험 유산</strong> 관련하여 신뢰성 있는 외부 기관의 자료를 참고하여 정확한 정보를 확인하세요.</p>
+            <ul>
+                <li><a href="https://www.fss.or.kr/fss/main/index.do" target="_blank">금융감독원 (FSS) - 보험 관련 소비자 정보</a></li>
+                <li><a href="https://namu.wiki/w/%ED%83%9C%EC%95%84%EB%B3%B4%ED%97%98" target="_blank">태아보험 관련 나무위키 정보</a></li>
+                <li><a href="https://www.cdc.go.kr/index.es?sid=a1" target="_blank">질병관리청 - 임신 관련 건강 정보</a></li>
+                <li><a href="https://www.gov.kr/portal/main" target="_blank">대한민국 정부포털 - 임신/출산 관련 지원 정책</a></li>
+                <li><a href="https://www.nhis.or.kr/nhis/index.do" target="_blank">국민건강보험공단 - 임신/출산 진료비 지원</a></li>
+            </ul>
+        </section>
+
+        <section id="inquiry">
+            <h2>나만을 위한 맞춤형 태아보험 유산 보장 견적 상담 (무료)</h2>
+            <p><strong>태아보험 유산 보장</strong>은 예비 엄마의 건강 상태, 임신 주차, 원하는 보장 범위에 따라 <strong>태아보험 유산 비용</strong>이 천차만별입니다. <strong>태아보험 저렴한곳</strong>, <strong>태아보험 싼곳</strong>을 찾기 위해 발품을 팔기보다는 전문가의 맞춤형 상담을 통해 가장 합리적인 상품을 선택하세요. 2026년 최신 상품 기준으로 <strong>태아보험 유산 보장 순위</strong>와 <strong>태아보험 내돈내산 후기</strong>를 참고하여 가장 적합한 설계를 도와드립니다.</p>
+
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호 (하이픈 포함)" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일:</label>
+                    <input type="email" id="email" name="email" placeholder="이메일 주소">
+                </div>
+                <div class="form-group">
+                    <label for="due_date">출산 예정일:</label>
+                    <input type="date" id="due_date" name="due_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="pregnancy_week">현재 임신 주차:</label>
+                    <input type="number" id="pregnancy_week" name="pregnancy_week" placeholder="예: 12" required>
+                </div>
+                <div class="form-group">
+                    <label for="miscarriage_history">유산 이력 유무:</label>
+                    <select id="miscarriage_history" name="miscarriage_history" required>
+                        <option value="">-- 선택 --</option>
+                        <option value="none">없음</option>
+                        <option value="yes_once">있음 (1회)</option>
+                        <option value="yes_recurrent">있음 (습관성 유산)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="consultation_type">상담 희망 내용:</label>
+                    <textarea id="consultation_type" name="consultation_type" placeholder="유산 보장 특약, 가격 비교, 가입 시기 등 궁금한 내용을 입력해주세요."></textarea>
+                </div>
+                <button type="submit" class="submit-button">무료 견적 상담 신청하기</button>
+            </form>
+            <a href="tel:01012345678" class="cta-button" aria-label="전화로 전문가 상담받기">전화로 바로 상담받기 📞</a>
+        </section>
     </main>
-  </body>
-</html>
+
+    <footer>
+        <p>&copy; 2026 태아보험 비교분석 전문센터. All Rights Reserved. 상담문의: 010-1234-5678</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                document.querySelectorAll('dl dt').forEach(item => {
+                    item.classList.remove('active');
+                    item.setAttribute('aria-expanded', 'false');
+                    item.nextElementSibling.style.display = 'none';
+                });
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    dt.nextElementSibling.style.display = 'block';
+                }
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+
+
+  
